@@ -18,10 +18,12 @@ public class ListItemPanel extends JPanel {
     private JLabel dateLabel;
     private RoundButton deleteButton;
     private RoundButton updateButton;
+    // Mendapatkan ukuran layar desktop
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    int width = screenSize.width;
 
     public ListItemPanel(String title, String date) {
         setLayout(new BorderLayout());
-
         // Column
         JPanel columnPanel = new JPanel();
         columnPanel.setLayout(new BoxLayout(columnPanel, BoxLayout.Y_AXIS));
@@ -59,7 +61,7 @@ public class ListItemPanel extends JPanel {
         buttonPanel.add(updateButton);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(itemPadding, itemPadding, itemPadding, itemPadding));
         add(buttonPanel, BorderLayout.EAST);
-        setPreferredSize(new Dimension(getPreferredSize().width, 70));
+        setPreferredSize(new Dimension(width, 50));
     }
 
     public JButton getDeleteButton() {

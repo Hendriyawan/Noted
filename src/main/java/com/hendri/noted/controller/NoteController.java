@@ -15,11 +15,10 @@ import java.util.List;
 
 /**
  * @author HENDRIYAWAN
- * 211011401536
+ *         211011401536
  */
 
-
-///PADA KELAS INI BERISI SEMUA LOGIC
+/// PADA KELAS INI BERISI SEMUA LOGIC
 public class NoteController {
 
     private JFrame frame;
@@ -42,8 +41,7 @@ public class NoteController {
         frame.add(listScrollPane, BorderLayout.CENTER);
     }
 
-
-    ///REFRESH LIST NOTE
+    /// REFRESH LIST NOTE
     private void refreshList() {
         listPanel.removeAll(); // Menghapus semua komponen dari panel
         listPanel.revalidate(); // Mevalidasi ulang panel
@@ -78,8 +76,7 @@ public class NoteController {
         }
     }
 
-
-    ///SIMPAN NOTE
+    /// SIMPAN NOTE
     public void saveNote(Boolean usingPassword, Note note) {
         if (usingPassword) {
             noteDaoImpl.createNoteWithPassword(note);
@@ -88,7 +85,7 @@ public class NoteController {
         }
     }
 
-    ///UPDATE NOTE
+    /// UPDATE NOTE
     public void updateNote(Boolean usingPassword, Note note) {
         if (usingPassword) {
             noteDaoImpl.updateNoteWithPassword(note);

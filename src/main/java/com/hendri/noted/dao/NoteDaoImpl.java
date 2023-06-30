@@ -166,9 +166,10 @@ public class NoteDaoImpl implements NoteDao {
     public void deleteNote(int id){
         PreparedStatement statement = null;
         try {
-            statement = dbConnection.prepareCall(SQL.DELETE);
+            statement = dbConnection.prepareStatement(SQL.DELETE);
             statement.setInt(1, id);
             statement.executeUpdate();
+
         } catch(SQLException e){
             e.printStackTrace();
         } finally {

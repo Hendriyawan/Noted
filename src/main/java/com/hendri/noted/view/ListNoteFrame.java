@@ -42,7 +42,6 @@ public class ListNoteFrame extends JFrame {
 
     public ListNoteFrame() {
 
-
         //mengatur padding, background button serta warna text button
         buttonCreateNote.setMargin(new Insets(5, 5, 5, 5));
         buttonCreateNote.setBackground(new Color(0xFFFFC107));
@@ -56,18 +55,17 @@ public class ListNoteFrame extends JFrame {
         buttonExit.setBackground(new Color(0xFFFFC107));
         buttonExit.setForeground(Color.WHITE);
 
-
         buttonCreateNote.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                //setVisible(false);
                 new CreateNoteFrame();
             }
         });
 
-        buttonExit.addActionListener(new ActionListener(){
+        buttonExit.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
@@ -88,13 +86,12 @@ public class ListNoteFrame extends JFrame {
         setLayout(new BorderLayout());
         add(toolbar, BorderLayout.NORTH);
 
-        setSize(width / 2, height / 2);
+        setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //create object NoteController
         noteController = new NoteController();
         noteController.loadNotes(this);
-
         setVisible(true);
     }
 }

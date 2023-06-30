@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 /**
  *
  * @author HENDRIYAWAN
- * 211011401536
+ *         211011401536
  */
 public class UpdateNoteFrame extends JFrame {
     // Mendapatkan ukuran layar desktop
@@ -33,7 +33,6 @@ public class UpdateNoteFrame extends JFrame {
     RoundButton buttonCancel = new RoundButton("Cancel");
     RoundButton buttonSave = new RoundButton("Save Update");
     RoundButton buttonUnlock = new RoundButton("Unlock");
-
 
     // Toolbar
     JToolBar toolbar = new JToolBar(JToolBar.HORIZONTAL);
@@ -52,7 +51,7 @@ public class UpdateNoteFrame extends JFrame {
 
     public UpdateNoteFrame(Note note) {
         this.note = note;
-        //create instance NoteController
+        // create instance NoteController
         noteController = new NoteController();
 
         // Mengatur padding, background button, serta warna teks button
@@ -110,8 +109,10 @@ public class UpdateNoteFrame extends JFrame {
         toolbar.add(buttonCancel);
         toolbar.add(Box.createHorizontalStrut(5)); // Spasi antara tombol
         toolbar.add(buttonSave);
-        toolbar.add(Box.createHorizontalStrut(5)); // Spasi antara tombol
-        toolbar.add(buttonUnlock);
+        if (note.getUsingPassword()) {
+            toolbar.add(Box.createHorizontalStrut(5)); // Spasi antara tombol
+            toolbar.add(buttonUnlock);
+        }
 
         // Form Panel
         JPanel formPanel = new JPanel();
@@ -130,7 +131,11 @@ public class UpdateNoteFrame extends JFrame {
         formPanel.add(titleField, gridBagConstraints);
 
         gridBagConstraints.gridy = 2;
-        contentArea.setText("*****************");
+        if (note.getUsingPassword()) {
+            contentArea.setText("*****************");
+        } else {
+            contentArea.setText(note.getContent());
+        }
         formPanel.add(contentLabel, gridBagConstraints);
 
         gridBagConstraints.gridy = 3;
@@ -145,13 +150,12 @@ public class UpdateNoteFrame extends JFrame {
         add(toolbar, BorderLayout.NORTH);
         add(formPanel, BorderLayout.CENTER);
 
-        setSize(width / 2, height / 2);
+        setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
-
-    ///menampilkan dialog enter password
+    /// menampilkan dialog enter password
     private void showPasswordDialog() {
         JPasswordField passwordField = new JPasswordField();
         Object[] message = {
@@ -172,7 +176,7 @@ public class UpdateNoteFrame extends JFrame {
         }
     }
 
-    ///menampilkan unlock content Note
+    /// menampilkan unlock content Note
     private void showUnlockDialog() {
         JPasswordField passwordField = new JPasswordField();
         Object[] message = {
@@ -187,7 +191,8 @@ public class UpdateNoteFrame extends JFrame {
 
             if (checkPassword(password)) {
                 // Jika password benar, tampilkan isi Note
-                ///JOptionPane.showMessageDialog(null, "Password is correct. Note content: " + getContent());
+                /// JOptionPane.showMessageDialog(null, "Password is correct. Note content: " +
+                // getContent());
                 contentArea.setText(note.getContent());
             } else {
                 // Jika password salah, tampilkan pesan kesalahan
@@ -199,9 +204,10 @@ public class UpdateNoteFrame extends JFrame {
     private boolean checkPassword(char[] password) {
         // Periksa apakah password cocok dengan password yang tersimpan di Note
         String storedPassword = note.getPassword();
-        // Misalkan Anda menggunakan metode convertToMD5() yang ada di kelas Util untuk mengonversi password menjadi MD5
+        // Misalkan Anda menggunakan metode convertToMD5() yang ada di kelas Util untuk
+        // mengonversi password menjadi MD5
         String enteredPasswordMD5 = new String(Util.convertToMD5(password));
         System.out.println(enteredPasswordMD5);
         return storedPassword.equals(enteredPasswordMD5);
-   }
+    }
 }

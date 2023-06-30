@@ -82,7 +82,6 @@ public class CreateNoteFrame extends JFrame {
                     note.setContent(contentArea.getText());
                     noteController.saveNote(false, note);
                     setVisible(false);
-
                     new ListNoteFrame();
                 }
             }
@@ -128,7 +127,7 @@ public class CreateNoteFrame extends JFrame {
         add(toolbar, BorderLayout.NORTH);
         add(formPanel, BorderLayout.CENTER);
 
-        setSize(width / 2, height / 2);
+        setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
