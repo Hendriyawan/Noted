@@ -38,8 +38,7 @@ public class ListNoteFrame extends JFrame {
     JToolBar toolbar = new JToolBar(JToolBar.HORIZONTAL);
 
     private NoteController noteController;
-
-
+    
     public ListNoteFrame() {
 
         //mengatur padding, background button serta warna text button

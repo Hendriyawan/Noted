@@ -20,6 +20,7 @@ public class Util {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return sdf.format(calendar.getTime());
     }
+    
     public static String convertToMD5(char[] password) {
         try {
             // Membuat instance MessageDigest dengan algoritma MD5
